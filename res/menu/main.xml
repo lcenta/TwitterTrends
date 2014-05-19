@@ -1,0 +1,86 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.trendingtweets.MainActivity" >
+
+     <item
+        android:id="@+id/World"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_world"/>
+
+     <item
+        android:id="@+id/Australia"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_australia"/>
+    
+    <item
+        android:id="@+id/Canada"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_canada"/>
+    
+    <item
+        android:id="@+id/India"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_india"/>
+    
+    <item
+        android:id="@+id/Indonesia"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_indonesia"/>
+
+     <item
+        android:id="@+id/Ireland"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_ireland"/>
+    
+    
+    <item
+        android:id="@+id/Italy"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_italy"/>
+    
+     <item
+        android:id="@+id/Nigeria"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_nigeria"/>
+     
+
+
+     <item
+        android:id="@+id/Pakistan"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_pakistan"/>
+     
+     <item
+        android:id="@+id/Philippines"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_philippines"/>
+
+     
+    <item
+        android:id="@+id/South_Korea"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_korea"/>
+    
+    <item
+        android:id="@+id/UK"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_uk"/>
+    
+    <item
+        android:id="@+id/USA"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_usa"/>
+</menu>
