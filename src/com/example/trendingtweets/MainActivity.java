@@ -236,6 +236,14 @@ public class MainActivity extends Activity{
 	    	
 	    }
 	    
+	    else if(count==12)
+	    {
+			loadlist(23424975); 
+			setTitle("Genovia"); 
+			getActionBar().setIcon(R.drawable.queen);
+	    	
+	    }
+	    
 	    else
 	    {					
 			loadlist(23424977);
