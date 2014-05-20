@@ -19,6 +19,12 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/menu_canada"/>
+
+     <item
+        android:id="@+id/Genovia"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_genovia"/>
     
     <item
         android:id="@+id/India"
@@ -83,4 +89,6 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/menu_usa"/>
+    
+
 </menu>

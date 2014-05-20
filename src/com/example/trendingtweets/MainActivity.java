@@ -47,6 +47,12 @@ public class MainActivity extends Activity{
 	private ListView trending = null;
 	private GestureDetector detect;
 	private int count=0;
+	private String[] titles = new String[]{"Now Trending - World", "Now Trending - Australia"
+		, "Now Trending - Canada" , "Now Trending - Genovia", "Now Trending - India" , "Now Trending - Indonesia" ,
+		"Now Trending - Ireland" , "Now Trending - Italy" , "Now Trending - Nigeria" , "Now Trending - Pakistan"
+		, "Now Trending - Philippines" , "Now Trending - South Korea", "Now Trending - UK" , "Now Trending - USA"
+	};
+	private int hold;
 	private LiveCard mLiveCard = null;
 	
 	@Override
@@ -145,14 +151,32 @@ public class MainActivity extends Activity{
     {
         trending.scrollListBy(trending.getHeight());
     }
+    
+    
+    private int whichcard(CharSequence title)
+    {
+    	int returning = 0;
+    	for(int i=0; i<titles.length; i++)
+    	{
+    		if(title.equals(titles[i]))
+    		{
+    			returning=i; break;
+    		}
+    	}
+    	return returning;
+    		
+    }
     private void handleGestureDoubleTap()
     {
+    	count=whichcard(getTitle());
 		setTitle("Now Trending - World");
 		getActionBar().setIcon(R.drawable.ic_twitter);
-	    count++;
+	    
+		
+		count++;
 	  
 	    //world
-	    if(count==0)
+	    if(count==14)
 	    {	loadlist(0); }
 	    
 	    else if(count==1)
@@ -170,34 +194,41 @@ public class MainActivity extends Activity{
 	    }
 	    
 	    else if(count==3)
+	    {					
+	    	loadlist(-6);
+	    	setTitle("Now Trending - Genovia");
+	    	getActionBar().setIcon(R.drawable.julieandrews);
+	    }
+	    
+	    else if(count==4)
 	    {	
 	    	loadlist(23424853); 
 			setTitle("Now Trending - India");
 			getActionBar().setIcon(R.drawable.namo);
 	    }
 	    
-	    else if(count==4)
+	    else if(count==5)
 	    {					
 	    	loadlist(23424846); 
 	    	setTitle("Now Trending - Indonesia");
 	    	getActionBar().setIcon(R.drawable.indo);
 	    }
 	    
-	    else if(count==5)
+	    else if(count==6)
 	    {					
 	    	loadlist(23424803); 
 	    	setTitle("Now Trending - Ireland");
 	    	getActionBar().setIcon(R.drawable.potatoes);
 	    }
 	    
-	    else if(count==6)
+	    else if(count==7)
 	    {	
 	    	loadlist(23424853); 
 			setTitle("Now Trending - Italy");
 			getActionBar().setIcon(R.drawable.mario);
 		}
 	    
-	    else if(count==7)
+	    else if(count==8)
 	    {					
 	    	loadlist(23424908); 
 	    	setTitle("Now Trending - Nigeria");
@@ -205,14 +236,14 @@ public class MainActivity extends Activity{
 	    }
 	    
 	    
-	    else if(count==8)
+	    else if(count==9)
 	    {	
 	    	loadlist(23424922); 
 			setTitle("Now Trending - Pakistan");
 			getActionBar().setIcon(R.drawable.pakistan);
 		}
 	    
-	    else if(count==9)
+	    else if(count==10)
 	    {					
 	    	loadlist(23424934); 
 	    	setTitle("Now Trending - Philippines");
@@ -221,14 +252,14 @@ public class MainActivity extends Activity{
 	    
 
 	  
-	    else if(count==10)
+	    else if(count==11)
 	    {				
 	    	loadlist(23424868);
 	    	getActionBar().setIcon(R.drawable.kris);
     		setTitle("Now Trending - South Korea");
     	}
 	   
-	    else if(count==11)
+	    else if(count==12)
 	    {
 			loadlist(23424975); 
 			setTitle("Now Trending - UK"); 
@@ -241,7 +272,6 @@ public class MainActivity extends Activity{
 			loadlist(23424977);
 			setTitle("Now Trending - USA"); 
 			getActionBar().setIcon(R.drawable.chrisevans);
-	    	count=-1;
 	    }
 	    
     	
@@ -280,6 +310,7 @@ public class MainActivity extends Activity{
 	 
 	 private void loadlist(int woeid)
 	 {
+		 hold=woeid;
 		 RequestTask gettwitter = new RequestTask()
 		 {
 				@Override
@@ -299,22 +330,35 @@ public class MainActivity extends Activity{
 					List<String> trendlist = new ArrayList<String>();
 					try 
 					{
-						JSONArray trends = (JSONArray) obj.get("trends");
-						for (int i = 0; i<trends.length(); i++)
+						if(hold!=-6)
 						{
-							JSONObject trend = (JSONObject) trends.get(i);
-							trendlist.add((i+1) + ". " + (String) trend.get("name"));
+							JSONArray trends = (JSONArray) obj.get("trends");
+							for (int i = 0; i<trends.length(); i++)
+							{
+								JSONObject trend = (JSONObject) trends.get(i);
+								trendlist.add((i+1) + ". " + (String) trend.get("name"));
+							}
+						}
+						
+						else
+						{
+							List<String> maybe = princess();
+							for (int i = 0; i<maybe.size(); i++)
+							{
+								
+								trendlist.add((i+1) + ". " + (String) maybe.get(i));
+							}
 						}
 					} 
 					catch (JSONException e) 
 					{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
-					
+					};
 					// TODO Auto-generated method stub
-					filllist(trendlist);
 					
+					filllist(trendlist);
+	
 				}
 			};
 			
@@ -327,7 +371,51 @@ public class MainActivity extends Activity{
 			gettwitter.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, twitterurl);	
 	 }
 	
+   public List<String> princess()
+   {
+	   String[] quotes = new String[]{"It's a wango?",  "You look so...clean", "I beg your pardon?", 
+			   "Wow, gee whiz, golly wolly" , "I'm late for a meeting with Spain and Portugal!", 
+			   "Actually, we call him Pookie" , "Please stop rearranging the tables", "It's not appropriate for royalty to jingle", 
+			   "But a very, very cute asparagus" , "It's bigger than orthodontia" , "Smile and wave", "Oh, hello", 
+			   "You've been wearing black for far too long", "Are you sassing your grandma?!", "She's gonna hurl!" , 
+			   "Just in case I'm not enough of a freak already, let's add a tiara!" , "No matter how many times you push it.."
+			   , "If this were a hearse there'd be silence in the backseat", "What am I? A duck?!", "Bushman eyebrows" , 
+			   "Is it customary to imprison your guests with Hermes scarfs?" , "Not you! I don't even know you!" , "May you always be Baron"
+	   };
+	   
+	   ArrayList<Integer> norepeats = new ArrayList<Integer>();
+	   
+	   ArrayList<String> tobeprinted = new ArrayList<String>();
+	   int i=0;
+	   while(i!=10)
+	   {
+		   
+		   int adding = (int)(Math.random()*10);
+		   if(notrepeat(adding, norepeats))
+		   {
+			   norepeats.add(new Integer(adding));
+			   tobeprinted.add(quotes[adding]);
+			   i++;
+		   }
+	   }
+	   
+	   return tobeprinted;
+	   
+   }
    
+   private boolean notrepeat(int beyonce, ArrayList<Integer> tocheck)
+   {
+	   boolean itis = true;
+	   for(int i=0; i<tocheck.size(); i++)
+	   {
+		   if(tocheck.get(i).intValue()==beyonce)
+		   {
+			   itis=false; break;
+		   }
+	   }
+	   
+		return itis;   
+   }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -376,6 +464,12 @@ public class MainActivity extends Activity{
 				loadlist(23424853); 
 				setTitle("Now Trending - India");
 				getActionBar().setIcon(R.drawable.namo);
+				return true;
+				
+			case R.id.Genovia: 
+				loadlist(-6);
+				setTitle("Now Trending - Genovia");
+				getActionBar().setIcon(R.drawable.julieandrews);
 				return true;
 
 			case R.id.Ireland:
